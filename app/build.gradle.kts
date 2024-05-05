@@ -23,6 +23,8 @@ dependencies {
     testImplementation("junit", "junit", "4.12")
     checkstyle("com.puppycrawl.tools", "checkstyle","10.12.4")
     implementation ("info.picocli", "picocli", "4.7.5")
+    implementation("com.fasterxml.jackson.core", "jackson-databind", "2.17.0")
+    implementation("com.google.guava", "guava", "33.2.0-jre")
 }
 
 configure<JavaPluginConvention> {
