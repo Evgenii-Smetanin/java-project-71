@@ -22,6 +22,7 @@ repositories {
 dependencies {
     testImplementation("junit", "junit", "4.12")
     checkstyle("com.puppycrawl.tools", "checkstyle","10.12.4")
+    implementation ("info.picocli", "picocli", "4.7.5")
 }
 
 configure<JavaPluginConvention> {
