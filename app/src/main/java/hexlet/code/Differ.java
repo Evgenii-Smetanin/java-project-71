@@ -9,7 +9,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Differ {
     public static String generate(String pathToFile1, String pathToFile2) throws IOException {
@@ -31,9 +34,11 @@ public class Differ {
         Map<String, MapDifference.ValueDifference<Object>> differing = difference.entriesDiffering();
 
         Map<String, String> lines = new HashMap<>();
-        deleted.entrySet().forEach(e -> lines.put(e.getKey(), "  - " + e.getKey() + ": " + e.getValue() + "\n"));
-        added.entrySet().forEach(e -> lines.put(e.getKey(), "  - " + e.getKey() + ": " + e.getValue() + "\n"));
-        common.entrySet().forEach(e -> lines.put(e.getKey(), "    " + e.getKey() + ": " + e.getValue() + "\n"));
+        deleted.forEach((k, v) -> lines.put(k, "  - " + k + ": " + v + "\n"));
+        added.forEach((k, v) -> lines.put(k, "  - " + k + ": " + v + "\n"));
+        common.forEach((k, v) -> lines.put(k, "    " + k + ": " + v + "\n"));
+        differing.forEach((k, v) -> lines.put(k, "  - " + k + ": " + v.leftValue() + "\n"
+                + "  + " + k + ": " + v.rightValue() + "\n"));
 
         Set<String> keyset = new TreeSet<>();
         keyset.addAll(lines.keySet());
