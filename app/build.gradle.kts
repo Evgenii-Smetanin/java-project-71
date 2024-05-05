@@ -1,16 +1,27 @@
 plugins {
     java
+    application
+    checkstyle
 }
 
 group = "hexlet.code"
 version = "1.0-SNAPSHOT"
+
+application {
+    mainClass = "hexlet.code.App"
+}
+
+checkstyle {
+    toolVersion = "10.12.4"
+}
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile("junit", "junit", "4.12")
+    testImplementation("junit", "junit", "4.12")
+    checkstyle("com.puppycrawl.tools", "checkstyle","10.12.4")
 }
 
 configure<JavaPluginConvention> {
