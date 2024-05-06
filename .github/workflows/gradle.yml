@@ -28,8 +28,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: Build with Gradle Wrapper
-      run: ./app/gradlew -b /home/runner/work/java-project-71/java-project-71/app/settings.gradle.kts
+    - name: Build with Gradle
+      uses: gradle/actions/setup-gradle@v3
+      with:
+        arguments: build
+        build-root-directory: app
 
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
