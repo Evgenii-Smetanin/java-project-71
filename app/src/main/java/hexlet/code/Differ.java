@@ -35,7 +35,7 @@ public class Differ {
 
         Map<String, String> lines = new HashMap<>();
         deleted.forEach((k, v) -> lines.put(k, "  - " + k + ": " + v + "\n"));
-        added.forEach((k, v) -> lines.put(k, "  - " + k + ": " + v + "\n"));
+        added.forEach((k, v) -> lines.put(k, "  + " + k + ": " + v + "\n"));
         common.forEach((k, v) -> lines.put(k, "    " + k + ": " + v + "\n"));
         differing.forEach((k, v) -> lines.put(k, "  - " + k + ": " + v.leftValue() + "\n"
                 + "  + " + k + ": " + v.rightValue() + "\n"));
