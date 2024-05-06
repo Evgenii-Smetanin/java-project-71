@@ -1,2 +1,4 @@
-rootProject.name = "app"
+classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: app)
+        }))
 
