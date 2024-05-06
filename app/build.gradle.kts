@@ -2,6 +2,7 @@ plugins {
     java
     application
     checkstyle
+    jacoco
 }
 
 group = "hexlet.code"
@@ -25,6 +26,18 @@ dependencies {
     implementation ("info.picocli", "picocli", "4.7.5")
     implementation("com.fasterxml.jackson.core", "jackson-databind", "2.17.0")
     implementation("com.google.guava", "guava", "33.2.0-jre")
+}
+
+tasks.test {
+    finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+    dependsOn(tasks.test)
+}
+
+jacoco {
+    toolVersion = "0.8.12"
 }
 
 configure<JavaPluginConvention> {
