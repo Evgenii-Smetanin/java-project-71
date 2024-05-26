@@ -10,3 +10,5 @@
 ![Cкриншот help](app/src/main/resources/Help.jpg)
 ![Cкриншот flat JSON](app/src/main/resources/Flat_JSON.jpg)
 ![Cкриншот flat YAML](app/src/main/resources/Flat_YAML.jpg)
+![Cкриншот Nested](app/src/main/resources/Nested.jpg)
+![Cкриншот Stylish](app/src/main/resources/Nested_Stylish.jpg)

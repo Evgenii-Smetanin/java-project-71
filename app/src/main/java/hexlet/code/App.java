@@ -30,7 +30,7 @@ public class App implements Runnable {
     @Override
     public void run() {
         try {
-            System.out.println(Differ.generate(path1, path2));
+            System.out.println(Differ.generate(path1, path2, format));
         } catch (IOException e) {
             e.printStackTrace();
         }
