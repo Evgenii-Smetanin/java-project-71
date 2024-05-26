@@ -9,3 +9,4 @@
 ###
 ![Cкриншот help](app/src/main/resources/Help.jpg)
 ![Cкриншот flat JSON](app/src/main/resources/Flat_JSON.jpg)
+![Cкриншот flat YAML](app/src/main/resources/Flat_YAML.jpg)
