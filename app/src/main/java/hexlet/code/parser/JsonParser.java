@@ -19,6 +19,6 @@ public class JsonParser implements Parser {
                 new TypeReference<HashMap<String, Object>>() {
                 };
 
-        return mapper.readValue(Files.readAllLines(path).get(0), type);
+        return mapper.readValue(Files.readAllBytes(path), type);
     }
 }
