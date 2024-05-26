@@ -1,12 +1,11 @@
+group = "hexlet.code"
+version = "1.0-SNAPSHOT"
+
 plugins {
-    java
     application
     checkstyle
     jacoco
 }
-
-group = "hexlet.code"
-version = "1.0-SNAPSHOT"
 
 application {
     mainClass = "hexlet.code.App"
@@ -25,6 +24,7 @@ dependencies {
     checkstyle("com.puppycrawl.tools", "checkstyle","10.12.4")
     implementation ("info.picocli", "picocli", "4.7.5")
     implementation("com.fasterxml.jackson.core", "jackson-databind", "2.17.0")
+    implementation("com.fasterxml.jackson.dataformat", "jackson-dataformat-yaml", "2.17.1")
     implementation("com.google.guava", "guava", "33.2.0-jre")
 }
 
