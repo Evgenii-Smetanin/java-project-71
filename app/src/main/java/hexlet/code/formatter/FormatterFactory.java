@@ -5,6 +5,8 @@ public class FormatterFactory {
         switch (format) {
             case "stylish":
                 return new StylishFormatter();
+            case "plain":
+                return new PlainFormatter();
             default:
                 throw new IllegalArgumentException("Unknown format: " + format + ".");
         }
