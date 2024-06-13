@@ -7,6 +7,8 @@ public class FormatterFactory {
                 return new StylishFormatter();
             case "plain":
                 return new PlainFormatter();
+            case "json":
+                return new JsonFormatter();
             default:
                 throw new IllegalArgumentException("Unknown format: " + format + ".");
         }
