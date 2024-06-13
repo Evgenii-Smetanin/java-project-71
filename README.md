@@ -14,7 +14,7 @@
 Пример:  
 *app -f plain C:\Users\Женя\IdeaProjects\java-project-71\app\src\test\resources\file1.json C:\Users\Женя\IdeaProjects\java-project-71\app\src\test\resources\file2.json*
 
-#####Скриншоты работы приложения:
+##### Скриншоты работы приложения:
 ![Cкриншот help](app/src/main/resources/Help.jpg)
 ![Cкриншот flat JSON](app/src/main/resources/Flat_JSON.jpg)
 ![Cкриншот flat YAML](app/src/main/resources/Flat_YAML.jpg)
