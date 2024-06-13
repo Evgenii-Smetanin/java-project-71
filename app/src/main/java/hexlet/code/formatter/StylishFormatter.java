@@ -11,10 +11,16 @@ public class StylishFormatter implements Formatter {
         String line = "  %s %s: %s\n";
         difference.forEach(d -> {
             if (d.getOperation().equals("-+")) {
-                sb.append(String.format(line, "-", d.getKey(), d.getLeftVal()));
-                sb.append(String.format(line, "+", d.getKey(), d.getRightVal()));
+                sb.append(String.format(line,
+                        "-",
+                        d.getKey(),
+                        d.getLeftVal() == null ? "null" : d.getLeftVal().toString()));
+                sb.append(String.format(line,
+                        "+",
+                        d.getKey(),
+                        d.getRightVal() == null ? "null" : d.getRightVal().toString()));
             } else {
-                sb.append(String.format(line, d.getOperation(), d.getKey(), d.getLeftVal()));
+                sb.append(String.format(line, d.getOperation(), d.getKey(), d.getLeftVal().toString()));
             }
         });
         sb.append("}");

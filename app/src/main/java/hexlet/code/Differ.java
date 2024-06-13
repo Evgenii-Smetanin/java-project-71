@@ -30,15 +30,15 @@ public class Differ {
 
         MapDifference<String, Object> mapDifference = Maps.difference(leftMap, rightMap);
         mapDifference.entriesOnlyOnLeft().forEach((k, v) ->
-                differences.add(new Difference(k, "-", v == null ? "null" : v.toString())));
+                differences.add(new Difference(k, "-", v)));
         mapDifference.entriesOnlyOnRight().forEach((k, v) ->
-                differences.add(new Difference(k, "+", v == null ? "null" : v.toString())));
+                differences.add(new Difference(k, "+", v)));
         mapDifference.entriesInCommon().forEach((k, v) ->
-                differences.add(new Difference(k, " ", v == null ? "null" : v.toString())));
+                differences.add(new Difference(k, " ", v)));
         mapDifference.entriesDiffering().forEach((k, v) ->
                 differences.add(new Difference(k,
-                        "-+", v.leftValue() == null ? "null" : v.leftValue().toString(),
-                        v.rightValue() == null ? "null" : v.rightValue().toString())));
+                        "-+", v.leftValue(),
+                        v.rightValue())));
 
         return formatter.format(differences);
     }

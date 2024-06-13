@@ -3,14 +3,14 @@ package hexlet.code;
 public class Difference implements Comparable<Difference> {
     private final String key;
     private final String operation;
-    private final String leftVal;
-    private final String rightVal;
+    private final Object leftVal;
+    private final Object rightVal;
 
-    Difference(String key, String operation, String value) {
+    Difference(String key, String operation, Object value) {
         this(key, operation, value, value);
     }
 
-    Difference(String key, String operation, String value1, String value2) {
+    Difference(String key, String operation, Object value1, Object value2) {
         if (!operation.equals("-") && !operation.equals("+") && !operation.equals(" ") && !operation.equals("-+")) {
             throw new IllegalArgumentException("Unknown operation: " + operation + ".");
         }
@@ -29,11 +29,11 @@ public class Difference implements Comparable<Difference> {
         return operation;
     }
 
-    public String getLeftVal() {
+    public Object getLeftVal() {
         return leftVal;
     }
 
-    public String getRightVal() {
+    public Object getRightVal() {
         return rightVal;
     }
 

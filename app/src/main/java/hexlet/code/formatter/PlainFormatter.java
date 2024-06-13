@@ -5,27 +5,24 @@ import hexlet.code.Difference;
 import java.util.Set;
 
 public class PlainFormatter implements Formatter {
+    private static final String UPD = "Property '%s' was updated. From %s to %s\n";
+    private static final String ADD = "Property '%s' was added with value: %s\n";
+    private static final String DEL = "Property '%s' was removed\n";
+
     @Override
     public String format(Set<Difference> difference) {
         StringBuilder sb = new StringBuilder();
-        String updated = "Property '%s' was updated. From %s to %s\n";
-        String added = "Property '%s' was added with value: %s\n";
-        String deleted = "Property '%s' was removed\n";
 
         difference.forEach(d -> {
-            if (sb.length() > 0) {
-                sb.append("\n");
-            }
-
             switch (d.getOperation()) {
                 case "+":
-                    sb.append(String.format(added, d.getKey(), d.getLeftVal()));
+                    sb.append(String.format(ADD, d.getKey(), getDiffVal(d.getLeftVal())));
                     break;
                 case "-":
-                    sb.append(String.format(deleted, d.getKey(), d.getLeftVal()));
+                    sb.append(String.format(DEL, d.getKey(), getDiffVal(d.getLeftVal())));
                     break;
                 case "-+":
-                    sb.append(String.format(updated, d.getKey(), d.getLeftVal(), d.getRightVal()));
+                    sb.append(String.format(UPD, d.getKey(), getDiffVal(d.getLeftVal()), getDiffVal(d.getRightVal())));
                     break;
                 case " ":
                     break;
@@ -34,6 +31,23 @@ public class PlainFormatter implements Formatter {
             }
         });
 
-        return sb.toString();
+        String result = sb.toString();
+        return result.substring(0, result.length() - 1);
+    }
+
+    private String getDiffVal(Object val) {
+        if (val == null) {
+            return "null";
+        }
+
+        if (val instanceof Number || val instanceof Boolean) {
+            return val.toString();
+        }
+
+        if (val instanceof String) {
+            return "'" + val + "'";
+        }
+
+        return "[complex value]";
     }
 }
