@@ -23,4 +23,8 @@ public class Differ {
                         parser.parse(pathToFile1),
                         parser.parse(pathToFile2)));
     }
+
+    public static String generate(String pathToFile1, String pathToFile2) throws IOException {
+        return generate(pathToFile1, pathToFile2, "stylish");
+    }
 }
