@@ -6,3 +6,6 @@ run-dist-h:
 
 run:
 	.\gradlew run
+
+report:
+	.\gradlew tasks.jacocoTestReport
