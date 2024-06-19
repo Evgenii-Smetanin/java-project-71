@@ -8,4 +8,4 @@ run:
 	.\gradlew run
 
 report:
-	make -C app report
+	./gradlew jacocoTestReport
