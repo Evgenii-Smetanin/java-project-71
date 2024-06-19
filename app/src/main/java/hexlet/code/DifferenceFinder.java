@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
-public class DifferenceFinder {
+public final class DifferenceFinder {
     public Set<Difference> findDifference(Map<String, Object> leftMap, Map<String, Object> rightMap) {
         Set<Difference> differences = new TreeSet<>();
         MapDifference<String, Object> mapDifference = Maps.difference(leftMap, rightMap);

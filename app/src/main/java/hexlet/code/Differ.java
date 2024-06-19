@@ -9,8 +9,19 @@ import java.io.IOException;
 
 public class Differ {
     public static String generate(String pathToFile1, String pathToFile2, String format) throws IOException {
-        String ext = pathToFile1.substring(pathToFile1.indexOf('.') + 1);
-        String ext2 = pathToFile1.substring(pathToFile2.indexOf('.') + 1);
+        boolean isPath1Valid = pathToFile1.lastIndexOf('.') != -1;
+        boolean isPath2Valid = pathToFile2.lastIndexOf('.') != -1;
+
+        if (!isPath1Valid && !isPath2Valid) {
+            throw new IllegalArgumentException("File extensions not found in paths: "
+                    + pathToFile1 + ", " + pathToFile2 + ".");
+        } else if (!isPath1Valid || !isPath2Valid) {
+            throw new IllegalArgumentException("File extension not found in path: "
+                    + (isPath2Valid ? pathToFile1 : pathToFile2) + ".");
+        }
+
+        String ext = pathToFile1.substring(pathToFile1.lastIndexOf('.') + 1);
+        String ext2 = pathToFile2.substring(pathToFile2.lastIndexOf('.') + 1);
         Formatter formatter = FormatterFactory.getFormatter(format);
 
         if (!ext.equals(ext2)) {
