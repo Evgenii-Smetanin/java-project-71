@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter-api", "5.10.2")
+    testRuntimeOnly("org.junit.jupiter", "junit-jupiter-engine", "5.10.2")
     checkstyle("com.puppycrawl.tools", "checkstyle","10.12.4")
     implementation ("info.picocli", "picocli", "4.7.5")
     implementation("com.fasterxml.jackson.core", "jackson-databind", "2.17.0")
