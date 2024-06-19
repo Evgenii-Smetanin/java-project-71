@@ -8,7 +8,7 @@ run:
 	.\gradlew run
 
 report:
-	.\gradlew tasks.jacocoTestReport
+	@./gradlew tasks.jacocoTestReport
 
 build:
 	@./gradlew clean build
