@@ -2,6 +2,8 @@ package hexlet.code.formatter;
 
 import hexlet.code.Difference;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public final class PlainFormatter implements Formatter {
@@ -40,14 +42,14 @@ public final class PlainFormatter implements Formatter {
             return "null";
         }
 
-        if (val instanceof Number || val instanceof Boolean) {
-            return val.toString();
-        }
-
         if (val instanceof String) {
             return "'" + val + "'";
         }
 
-        return "[complex value]";
+        if (val instanceof Map || val instanceof List) {
+            return "[complex value]";
+        }
+
+        return val.toString();
     }
 }
