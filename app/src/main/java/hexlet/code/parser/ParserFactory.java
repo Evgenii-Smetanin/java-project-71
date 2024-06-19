@@ -5,6 +5,7 @@ public class ParserFactory {
         switch (ext) {
             case "json":
                 return new JsonParser();
+            case "yml":
             case "yaml":
                 return new YamlParser();
             default:
