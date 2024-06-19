@@ -6,3 +6,6 @@ run-dist-h:
 
 run:
 	.\gradlew run
+
+report:
+	make -C app report
