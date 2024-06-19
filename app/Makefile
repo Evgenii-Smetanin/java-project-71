@@ -8,4 +8,4 @@ run:
 	.\gradlew run
 
 report:
-	.\gradlew tasks.jacocoTestReport
+	gradlew tasks.jacocoTestReport
