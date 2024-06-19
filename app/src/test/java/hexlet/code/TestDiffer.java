@@ -1,56 +1,87 @@
 package hexlet.code;
 
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static hexlet.code.Differ.generate;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestDiffer {
-    private final String correctResult = String.join("\n",
-            Files.readAllLines(Path.of("src/test/resources/correctResult.txt")));
+    private static final String JSON_PATH_1 = "src/test/resources/file1.json";
+    private static final String JSON_PATH_2 = "src/test/resources/file2.json";
+    private static final String YAML_PATH_1 = "src/test/resources/file1.yaml";
+    private static final String YAML_PATH_2 = "src/test/resources/file2.yaml";
 
-    public TestDiffer() throws IOException {
+    private static final String STYLISH = "stylish";
+    private static final String PLAIN = "plain";
+    private static final String JSON = "json";
+
+    private static String correctResultStylish;
+    private static String correctResultPlain;
+    private static String correctResultJson;
+
+    public TestDiffer() {
+    }
+
+    @BeforeAll
+    public static void init() throws IOException {
+        correctResultStylish = readFixture("correctResult.txt");
+        correctResultPlain = readFixture("correctResultPlain.txt");
+        correctResultJson = readFixture("correctResultJson.txt");
+    }
+
+    private static Path getFixturePath(String fileName) {
+        return Paths.get("src", "test", "resources", fileName)
+                .toAbsolutePath().normalize();
+    }
+
+    private static String readFixture(String fileName) throws IOException {
+        Path filePath = getFixturePath(fileName);
+        return Files.readString(filePath).trim();
     }
 
     @Test
-    public void testGenerateFromJson() throws IOException {
-        assertEquals(correctResult,
-                generate("src/test/resources/file1.json",
-                        "src/test/resources/file2.json",
-                        "stylish"));
+    void testGenerateDefaultFromJson() throws IOException {
+        assertEquals(correctResultStylish, generate(JSON_PATH_1, JSON_PATH_2));
     }
 
     @Test
-    public void testGenerateFromYaml() throws IOException {
-        assertEquals(correctResult,
-                generate("src/test/resources/file1.yaml",
-                        "src/test/resources/file2.yaml",
-                        "stylish"));
+    void testGenerateDefaultFromYaml() throws IOException {
+        assertEquals(correctResultStylish, generate(YAML_PATH_1, YAML_PATH_2));
     }
 
     @Test
-    public void testGeneratePlain() throws IOException {
-        assertEquals(
-                String.join(
-                        "\n",
-                        Files.readAllLines(Path.of("src/test/resources/correctResultPlain.txt"))),
-                generate("src/test/resources/file1.json",
-                        "src/test/resources/file2.json",
-                        "plain"));
+    void testGenerateStylishFromJson() throws IOException {
+        assertEquals(correctResultStylish, generate(JSON_PATH_1, JSON_PATH_2, STYLISH));
     }
 
     @Test
-    public void testGenerateJson() throws IOException {
-        assertEquals(
-                String.join(
-                        "\n",
-                        Files.readAllLines(Path.of("src/test/resources/correctResultJson.txt"))),
-                generate("src/test/resources/file1.json",
-                        "src/test/resources/file2.json",
-                        "json"));
+    void testGenerateStylishFromYaml() throws IOException {
+        assertEquals(correctResultStylish, generate(YAML_PATH_1, YAML_PATH_2, STYLISH));
+    }
+
+    @Test
+    void testGeneratePlainFromJson() throws IOException {
+        assertEquals(correctResultPlain, generate(JSON_PATH_1, JSON_PATH_2, PLAIN));
+    }
+
+    @Test
+    void testGeneratePlainFromYaml() throws IOException {
+        assertEquals(correctResultPlain, generate(YAML_PATH_1, YAML_PATH_2, PLAIN));
+    }
+
+    @Test
+    void testGenerateJsonFromJson() throws IOException {
+        assertEquals(correctResultJson, generate(JSON_PATH_1, JSON_PATH_2, JSON));
+    }
+
+    @Test
+    void testGenerateJsonFromYaml() throws IOException {
+        assertEquals(correctResultJson, generate(YAML_PATH_1, YAML_PATH_2, JSON));
     }
 }
