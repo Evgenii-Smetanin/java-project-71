@@ -11,7 +11,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class JsonFormatter implements Formatter {
+public final class JsonFormatter implements Formatter {
     @Override
     public String format(Set<Difference> difference) {
         List<Map<String, Object>> differences = new ArrayList<>();

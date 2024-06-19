@@ -4,7 +4,7 @@ import hexlet.code.Difference;
 
 import java.util.Set;
 
-public class StylishFormatter implements Formatter {
+public final class StylishFormatter implements Formatter {
     @Override
     public String format(Set<Difference> difference) {
         StringBuilder sb = new StringBuilder("{\n");

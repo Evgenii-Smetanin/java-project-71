@@ -4,7 +4,7 @@ import hexlet.code.Difference;
 
 import java.util.Set;
 
-public class PlainFormatter implements Formatter {
+public final class PlainFormatter implements Formatter {
     private static final String UPD = "Property '%s' was updated. From %s to %s\n";
     private static final String ADD = "Property '%s' was added with value: %s\n";
     private static final String DEL = "Property '%s' was removed\n";

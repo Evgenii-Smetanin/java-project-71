@@ -13,7 +13,7 @@ import java.io.IOException;
     version = "gendiff  1.0",
     description = "Compares two configuration files and shows a difference."
 )
-public class App implements Runnable {
+public final class App implements Runnable {
     @Parameters(paramLabel = "filepath1", index = "0", description = "path to first file")
     private String path1;
 

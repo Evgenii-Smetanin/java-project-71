@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JsonParser implements Parser {
+public final class JsonParser implements Parser {
     @Override
     public Map<String, Object> parse(String pathToFile) throws IOException {
         Path path = Paths.get(pathToFile);

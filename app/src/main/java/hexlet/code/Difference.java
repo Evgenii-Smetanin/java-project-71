@@ -1,6 +1,6 @@
 package hexlet.code;
 
-public class Difference implements Comparable<Difference> {
+public final class Difference implements Comparable<Difference> {
     private final String key;
     private final String operation;
     private final Object leftVal;
