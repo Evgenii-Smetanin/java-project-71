@@ -5,7 +5,7 @@ run-dist-h:
 	.\build\install\app\bin\app -h
 
 run:
-	.\gradlew run
+	@./gradlew run
 
 report:
 	@./gradlew jacocoTestReport
