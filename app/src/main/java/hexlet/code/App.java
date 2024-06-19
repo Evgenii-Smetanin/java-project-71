@@ -20,8 +20,9 @@ public final class App implements Runnable {
     @Parameters(paramLabel = "filepath2", index = "1", description = "path to second file")
     private String path2;
 
-    @Option(names = {"-f", "--format"}, paramLabel = "format", description = "output format [default: stylish]")
-    private String format = "stylish";
+    @Option(names = {"-f", "--format"}, defaultValue = "stylish",
+            paramLabel = "format", description = "output format [default: stylish]")
+    private String format;
 
     public static void main(String[] args) {
         new CommandLine(new App()).execute(args);
