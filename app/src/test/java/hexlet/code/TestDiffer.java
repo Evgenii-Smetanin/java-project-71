@@ -19,13 +19,17 @@ public class TestDiffer {
     @Test
     public void testGenerateFromJson() throws IOException {
         assertEquals(correctResult,
-                generate("src/test/resources/file1.json", "src/test/resources/file2.json"));
+                generate("src/test/resources/file1.json",
+                        "src/test/resources/file2.json",
+                        "stylish"));
     }
 
     @Test
     public void testGenerateFromYaml() throws IOException {
         assertEquals(correctResult,
-                generate("src/test/resources/file1.yaml", "src/test/resources/file2.yaml"));
+                generate("src/test/resources/file1.yaml",
+                        "src/test/resources/file2.yaml",
+                        "stylish"));
     }
 
     @Test
