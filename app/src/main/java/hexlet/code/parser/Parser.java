@@ -4,5 +4,5 @@ import java.io.IOException;
 import java.util.Map;
 
 public interface Parser {
-    Map<String, Object> parse(String pathToFile) throws IOException;
+    Map<String, Object> parse(byte[] bytesToParse) throws IOException;
 }

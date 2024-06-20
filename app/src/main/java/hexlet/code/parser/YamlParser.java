@@ -5,21 +5,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
 public final class YamlParser implements Parser {
     @Override
-    public Map<String, Object> parse(String pathToFile) throws IOException {
-        Path path = Paths.get(pathToFile);
+    public Map<String, Object> parse(byte[] bytesToParse) throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-        TypeReference<HashMap<String, Object>> type =
-                new TypeReference<HashMap<String, Object>>() {
-                };
+        TypeReference<HashMap<String, Object>> type = new TypeReference<>() {
+        };
 
-        return mapper.readValue(Files.readAllBytes(path), type);
+        return mapper.readValue(bytesToParse, type);
     }
 }

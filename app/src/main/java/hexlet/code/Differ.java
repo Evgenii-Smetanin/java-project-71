@@ -6,6 +6,8 @@ import hexlet.code.parser.Parser;
 import hexlet.code.parser.ParserFactory;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Differ {
     public static String generate(String pathToFile1, String pathToFile2, String format) throws IOException {
@@ -31,11 +33,15 @@ public class Differ {
         Parser parser = ParserFactory.getParser(ext);
         return formatter.format(
                 new DifferenceFinder().findDifference(
-                        parser.parse(pathToFile1),
-                        parser.parse(pathToFile2)));
+                        parser.parse(readBytes(pathToFile1)),
+                        parser.parse(readBytes(pathToFile2))));
     }
 
     public static String generate(String pathToFile1, String pathToFile2) throws IOException {
         return generate(pathToFile1, pathToFile2, "stylish");
+    }
+
+    public static byte[] readBytes(String path) throws IOException {
+        return Files.readAllBytes(Paths.get(path));
     }
 }
