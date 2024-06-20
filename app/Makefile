@@ -13,4 +13,7 @@ report:
 build:
 	@./gradlew clean build
 
+install:
+	@./gradlew clean installDist
+
 .PHONY: build

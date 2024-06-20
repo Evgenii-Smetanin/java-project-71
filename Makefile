@@ -10,4 +10,7 @@ build:
 report:
 	make -C app report
 
+install:
+	make -C app install
+
 .PHONY: build
