@@ -1,16 +1,16 @@
 run-dist:
-	.\build\install\app\bin\app
+	.\build\install\app\bin app
 
 run-dist-h:
-	.\build\install\app\bin\app -h
+	.\build\install\app\bin app -h
 
 run:
-	@./gradlew run
+	gradlew run
 
 report:
-	@./gradlew jacocoTestReport
+	gradlew jacocoTestReport
 
 build:
-	@./gradlew clean build
+	gradlew clean build
 
 .PHONY: build
