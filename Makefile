@@ -12,5 +12,3 @@ report:
 
 install:
 	make -C app install
-
-.PHONY: build

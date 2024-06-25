@@ -10,11 +10,11 @@ import java.util.Map;
 
 public final class YamlParser implements Parser {
     @Override
-    public Map<String, Object> parse(byte[] bytesToParse) throws IOException {
+    public Map<String, Object> parse(String textToParse) throws IOException {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         TypeReference<HashMap<String, Object>> type = new TypeReference<>() {
         };
 
-        return mapper.readValue(bytesToParse, type);
+        return mapper.readValue(textToParse, type);
     }
 }

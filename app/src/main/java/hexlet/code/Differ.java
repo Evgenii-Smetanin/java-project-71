@@ -1,47 +1,48 @@
 package hexlet.code;
 
-import hexlet.code.formatter.Formatter;
-import hexlet.code.formatter.FormatterFactory;
-import hexlet.code.parser.Parser;
-import hexlet.code.parser.ParserFactory;
+import hexlet.code.formatter.FormatterService;
+import hexlet.code.parser.ParserService;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
+import java.util.Set;
 
 public class Differ {
     public static String generate(String pathToFile1, String pathToFile2, String format) throws IOException {
-        boolean isPath1Valid = pathToFile1.lastIndexOf('.') != -1;
-        boolean isPath2Valid = pathToFile2.lastIndexOf('.') != -1;
+        String ext1 = getExt(pathToFile1);
+        String ext2 = getExt(pathToFile2);
 
-        if (!isPath1Valid && !isPath2Valid) {
-            throw new IllegalArgumentException("File extensions not found in paths: "
-                    + pathToFile1 + ", " + pathToFile2 + ".");
-        } else if (!isPath1Valid || !isPath2Valid) {
-            throw new IllegalArgumentException("File extension not found in path: "
-                    + (isPath2Valid ? pathToFile1 : pathToFile2) + ".");
+        if (!ext1.equals(ext2)) {
+            throw new IllegalArgumentException("Different file extensions: " + ext1 + ", " + ext2 + ".");
         }
 
-        String ext = pathToFile1.substring(pathToFile1.lastIndexOf('.') + 1);
-        String ext2 = pathToFile2.substring(pathToFile2.lastIndexOf('.') + 1);
-        Formatter formatter = FormatterFactory.getFormatter(format);
-
-        if (!ext.equals(ext2)) {
-            throw new IllegalArgumentException("Different file extensions: " + ext + ", " + ext2 + ".");
-        }
-
-        Parser parser = ParserFactory.getParser(ext);
-        return formatter.format(
-                new DifferenceFinder().findDifference(
-                        parser.parse(readBytes(pathToFile1)),
-                        parser.parse(readBytes(pathToFile2))));
+        Set<Difference> differences = new DifferenceFinder().findDifference(getData(pathToFile1), getData(pathToFile2));
+        return FormatterService.format(differences, format);
     }
 
     public static String generate(String pathToFile1, String pathToFile2) throws IOException {
         return generate(pathToFile1, pathToFile2, "stylish");
     }
 
-    public static byte[] readBytes(String path) throws IOException {
-        return Files.readAllBytes(Paths.get(path));
+    private static Map<String, Object> getData(String filePath) throws IOException {
+        Path path = Paths.get(filePath);
+
+        if (!Files.exists(path)) {
+            throw new IOException("File '" + path + "' does not exist");
+        }
+
+        String content = Files.readString(path);
+        return ParserService.parse(content, getExt(filePath));
+    }
+
+    private static String getExt(String filePath) {
+        if (filePath.lastIndexOf('.') == -1) {
+            throw new IllegalArgumentException("File extension not found in path: " + filePath + ".");
+        }
+
+        return filePath.substring(filePath.lastIndexOf('.') + 1);
     }
 }
