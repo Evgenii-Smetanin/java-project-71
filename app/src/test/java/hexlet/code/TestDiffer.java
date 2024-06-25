@@ -11,7 +11,7 @@ import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestDiffer {
+public final class TestDiffer {
     private static final String STYLISH = "stylish";
     private static final String PLAIN = "plain";
     private static final String JSON = "json";
