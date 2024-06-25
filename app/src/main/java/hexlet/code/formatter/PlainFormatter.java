@@ -17,16 +17,16 @@ public final class PlainFormatter implements Formatter {
 
         difference.forEach(d -> {
             switch (d.getOperation()) {
-                case "+":
+                case ADDED:
                     sb.append(String.format(ADD, d.getKey(), getDiffVal(d.getLeftVal())));
                     break;
-                case "-":
+                case DELETED:
                     sb.append(String.format(DEL, d.getKey(), getDiffVal(d.getLeftVal())));
                     break;
-                case "-+":
+                case CHANGED:
                     sb.append(String.format(UPD, d.getKey(), getDiffVal(d.getLeftVal()), getDiffVal(d.getRightVal())));
                     break;
-                case " ":
+                case UNCHANGED:
                     break;
                 default:
                     throw new RuntimeException("Unknown operation: " + d.getOperation());

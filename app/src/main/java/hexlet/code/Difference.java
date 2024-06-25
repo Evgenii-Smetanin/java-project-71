@@ -2,19 +2,15 @@ package hexlet.code;
 
 public final class Difference implements Comparable<Difference> {
     private final String key;
-    private final String operation;
+    private final Status operation;
     private final Object leftVal;
     private final Object rightVal;
 
-    Difference(String key, String operation, Object value) {
+    Difference(String key, Status operation, Object value) {
         this(key, operation, value, value);
     }
 
-    Difference(String key, String operation, Object value1, Object value2) {
-        if (!operation.equals("-") && !operation.equals("+") && !operation.equals(" ") && !operation.equals("-+")) {
-            throw new IllegalArgumentException("Unknown operation: " + operation + ".");
-        }
-
+    Difference(String key, Status operation, Object value1, Object value2) {
         this.key = key;
         this.operation = operation;
         this.leftVal = value1;
@@ -25,7 +21,7 @@ public final class Difference implements Comparable<Difference> {
         return key;
     }
 
-    public String getOperation() {
+    public Status getOperation() {
         return operation;
     }
 

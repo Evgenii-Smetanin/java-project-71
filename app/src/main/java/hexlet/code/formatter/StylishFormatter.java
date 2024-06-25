@@ -1,6 +1,7 @@
 package hexlet.code.formatter;
 
 import hexlet.code.Difference;
+import hexlet.code.Status;
 
 import java.util.Set;
 
@@ -10,7 +11,7 @@ public final class StylishFormatter implements Formatter {
         StringBuilder sb = new StringBuilder("{\n");
         String line = "  %s %s: %s\n";
         difference.forEach(d -> {
-            if (d.getOperation().equals("-+")) {
+            if (d.getOperation().equals(Status.CHANGED)) {
                 sb.append(String.format(line,
                         "-",
                         d.getKey(),

@@ -1,22 +1,17 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static hexlet.code.Differ.generate;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestDiffer {
-    private static final String JSON_PATH_1 = "src/test/resources/file1.json";
-    private static final String JSON_PATH_2 = "src/test/resources/file2.json";
-    private static final String YAML_PATH_1 = "src/test/resources/file1.yaml";
-    private static final String YAML_PATH_2 = "src/test/resources/file2.yaml";
-
     private static final String STYLISH = "stylish";
     private static final String PLAIN = "plain";
     private static final String JSON = "json";
@@ -45,43 +40,39 @@ public class TestDiffer {
         return Files.readString(filePath).trim();
     }
 
-    @Test
-    void testGenerateDefaultFromJson() throws IOException {
-        assertEquals(correctResultStylish, generate(JSON_PATH_1, JSON_PATH_2));
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    public void testGenerateDefault(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
+
+        assertEquals(Differ.generate(filePath1, filePath2), correctResultStylish);
     }
 
-    @Test
-    void testGenerateDefaultFromYaml() throws IOException {
-        assertEquals(correctResultStylish, generate(YAML_PATH_1, YAML_PATH_2));
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    public void testGenerateStylish(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
+
+        assertEquals(Differ.generate(filePath1, filePath2, STYLISH), correctResultStylish);
     }
 
-    @Test
-    void testGenerateStylishFromJson() throws IOException {
-        assertEquals(correctResultStylish, generate(JSON_PATH_1, JSON_PATH_2, STYLISH));
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    public void testGeneratePlain(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
+
+        assertEquals(Differ.generate(filePath1, filePath2, PLAIN), correctResultPlain);
     }
 
-    @Test
-    void testGenerateStylishFromYaml() throws IOException {
-        assertEquals(correctResultStylish, generate(YAML_PATH_1, YAML_PATH_2, STYLISH));
-    }
+    @ParameterizedTest
+    @ValueSource(strings = {"json", "yml"})
+    public void testGenerateJson(String format) throws Exception {
+        String filePath1 = getFixturePath("file1." + format).toString();
+        String filePath2 = getFixturePath("file2." + format).toString();
 
-    @Test
-    void testGeneratePlainFromJson() throws IOException {
-        assertEquals(correctResultPlain, generate(JSON_PATH_1, JSON_PATH_2, PLAIN));
-    }
-
-    @Test
-    void testGeneratePlainFromYaml() throws IOException {
-        assertEquals(correctResultPlain, generate(YAML_PATH_1, YAML_PATH_2, PLAIN));
-    }
-
-    @Test
-    void testGenerateJsonFromJson() throws IOException {
-        assertEquals(correctResultJson, generate(JSON_PATH_1, JSON_PATH_2, JSON));
-    }
-
-    @Test
-    void testGenerateJsonFromYaml() throws IOException {
-        assertEquals(correctResultJson, generate(YAML_PATH_1, YAML_PATH_2, JSON));
+        assertEquals(Differ.generate(filePath1, filePath2, JSON), correctResultJson);
     }
 }
