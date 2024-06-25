@@ -46,7 +46,7 @@ public class TestDiffer {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
-        assertEquals(Differ.generate(filePath1, filePath2), correctResultStylish);
+        assertEquals(correctResultStylish, Differ.generate(filePath1, filePath2));
     }
 
     @ParameterizedTest
@@ -55,7 +55,7 @@ public class TestDiffer {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
-        assertEquals(Differ.generate(filePath1, filePath2, STYLISH), correctResultStylish);
+        assertEquals(correctResultStylish, Differ.generate(filePath1, filePath2, STYLISH));
     }
 
     @ParameterizedTest
@@ -64,7 +64,7 @@ public class TestDiffer {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
-        assertEquals(Differ.generate(filePath1, filePath2, PLAIN), correctResultPlain);
+        assertEquals(correctResultPlain, Differ.generate(filePath1, filePath2, PLAIN));
     }
 
     @ParameterizedTest
@@ -73,6 +73,6 @@ public class TestDiffer {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
-        assertEquals(Differ.generate(filePath1, filePath2, JSON), correctResultJson);
+        assertEquals(correctResultJson, Differ.generate(filePath1, filePath2, JSON));
     }
 }
