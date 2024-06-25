@@ -37,7 +37,7 @@ public class TestDiffer {
 
     private static String readFixture(String fileName) throws IOException {
         Path filePath = getFixturePath(fileName);
-        return Files.readString(filePath).trim();
+        return Files.readString(filePath).trim().replace("\r\n", "\n");
     }
 
     @ParameterizedTest
