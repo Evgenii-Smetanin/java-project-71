@@ -42,7 +42,7 @@ public class TestDiffer {
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "yml"})
-    public void testGenerateDefault(String format) throws Exception {
+    void testGenerateDefault(String format) throws Exception {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
@@ -51,7 +51,7 @@ public class TestDiffer {
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "yml"})
-    public void testGenerateStylish(String format) throws Exception {
+    void testGenerateStylish(String format) throws Exception {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
@@ -60,7 +60,7 @@ public class TestDiffer {
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "yml"})
-    public void testGeneratePlain(String format) throws Exception {
+    void testGeneratePlain(String format) throws Exception {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
@@ -69,7 +69,7 @@ public class TestDiffer {
 
     @ParameterizedTest
     @ValueSource(strings = {"json", "yml"})
-    public void testGenerateJson(String format) throws Exception {
+    void testGenerateJson(String format) throws Exception {
         String filePath1 = getFixturePath("file1." + format).toString();
         String filePath2 = getFixturePath("file2." + format).toString();
 
