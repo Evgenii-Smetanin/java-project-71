@@ -9,12 +9,8 @@ import java.util.Set;
 
 public final class JsonFormatter implements Formatter {
     @Override
-    public String format(Set<Difference> difference) {
+    public String format(Set<Difference> difference) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();
-        try {
-            return mapper.writeValueAsString(difference);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
+        return mapper.writeValueAsString(difference);
     }
 }
